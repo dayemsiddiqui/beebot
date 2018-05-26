@@ -156,9 +156,11 @@
         100% {-webkit-filter: blur(5px);}
       }
     </style>
+    <script src="js/webcam.min.js"></script>
   </head>
 
   <body>
+    <div><div id="my_result"></div></div>
     <div class="wrap">
     <div class="cat">
       <div class="eyes">
@@ -172,7 +174,6 @@
     </div>
     <div class="shadow"></div>
     </div>
-
     <section>
       <h1>BeeBot</h1>
       <h2>Your Personal Companion</h2>
@@ -183,8 +184,10 @@
           <p>You said: <em class="output-you">...</em></p>
           <p>Bot replied: <em class="output-bot">...</em></p>
       </div>
+    
+      <div id="my_camera" style="width:320px; height:240px; opacity: 0;" ></div>
+      
     </section>
-
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/script.js"></script>
   </body>

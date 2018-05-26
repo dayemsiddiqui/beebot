@@ -11,7 +11,7 @@ const recognition = new SpeechRecognition();
 recognition.lang = 'en-US';
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
-
+Webcam.attach( '#my_camera' );
 document.querySelector('button').addEventListener('click', () => {
   recognition.start();
 });
@@ -47,9 +47,19 @@ function synthVoice(text) {
   synth.speak(utterance);
 }
 
+function takePicture(){
+    console.log("In take picture")
+      Webcam.snap( function(data_uri) {
+        document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
+      } );
+      console.log("Picture Taken")
+}
+
 socket.on('bot reply', function(replyText) {
   synthVoice(replyText);
-
+  if(replyText == 'Okay taking a picture') { 
+      takePicture();
+  }
   if(replyText == '') replyText = '(No answer...)';
   outputBot.textContent = replyText;
 });
